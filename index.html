@@ -155,10 +155,18 @@
         <div class="cta__box reveal">
           <h2 class="cta__title">Prêt à briller en ligne ?</h2>
           <p class="cta__desc">Discutons de votre projet et créons ensemble quelque chose de magnifique.</p>
-          <form class="contact-form" action="#" method="post" novalidate>
+          <form class="contact-form" id="contactForm" action="/.netlify/functions/contact" method="post" novalidate>
+            <label for="name" class="sr-only">Votre nom</label>
+            <input id="name" name="name" type="text" placeholder="Votre nom" required />
+
             <label for="email" class="sr-only">Votre adresse e-mail</label>
             <input id="email" name="email" type="email" placeholder="votre@email.com" required />
+
+            <label for="message" class="sr-only">Votre message</label>
+            <textarea id="message" name="message" placeholder="Votre message..." rows="4" required></textarea>
+
             <button type="submit" class="btn btn--primary">Envoyer</button>
+            <p class="form-status" id="formStatus" aria-live="polite"></p>
           </form>
         </div>
       </div>

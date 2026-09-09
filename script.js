@@ -56,26 +56,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
   revealElements.forEach((el) => revealObserver.observe(el));
 
-  // Contact form feedback
-  const form = document.querySelector('.contact-form');
+  // Contact form submission to Netlify Function back-end
+  const form = document.getElementById('contactForm');
+  const statusEl = document.getElementById('formStatus');
+
   if (form) {
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const input = form.querySelector('input[type="email"]');
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
       const button = form.querySelector('button[type="submit"]');
+      const originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = 'Envoi en cours...';
+      if (statusEl) statusEl.textContent = '';
 
-      if (input && input.checkValidity()) {
-        const originalText = button.textContent;
-        button.textContent = 'Merci ! 🎉';
-        button.disabled = true;
-        input.value = '';
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: form.name.value.trim(),
+            email: form.email.value.trim(),
+            message: form.message.value.trim(),
+          }),
+        });
 
-        setTimeout(() => {
-          button.textContent = originalText;
-          button.disabled = false;
-        }, 2500);
-      } else {
-        input?.reportValidity();
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          if (statusEl) {
+            statusEl.textContent = result.message;
+            statusEl.style.color = 'var(--color-secondary)';
+          }
+          form.reset();
+        } else {
+          throw new Error(result.message || 'Erreur lors de l’envoi.');
+        }
+      } catch (error) {
+        if (statusEl) {
+          statusEl.textContent = error.message;
+          statusEl.style.color = 'var(--color-accent)';
+        }
+      } finally {
+        button.textContent = originalText;
+        button.disabled = false;
       }
     });
   }
