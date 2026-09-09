@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lumière — Un site web magnifique, moderne et responsive." />
+  <title>Lumière — Créons l'extraordinaire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#" class="logo" aria-label="Accueil Lumière">
+        <span class="logo__icon" aria-hidden="true">✦</span>
+        <span class="logo__text">Lumière</span>
+      </a>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="#accueil" class="nav__link">Accueil</a></li>
+        <li><a href="#services" class="nav__link">Services</a></li>
+        <li><a href="#realisations" class="nav__link">Réalisations</a></li>
+        <li><a href="#temoignages" class="nav__link">Témoignages</a></li>
+        <li><a href="#contact" class="nav__link nav__link--cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="hero__blob hero__blob--1" aria-hidden="true"></div>
+      <div class="hero__blob hero__blob--2" aria-hidden="true"></div>
+      <div class="hero__content container">
+        <span class="hero__badge reveal">Nouveau · Design d'exception</span>
+        <h1 class="hero__title reveal">Donnez vie à une présence web <span class="text-gradient">magnifique</span>.</h1>
+        <p class="hero__subtitle reveal">
+          Des sites élégants, performants et pensés pour convertir vos visiteurs en admirateurs.
+        </p>
+        <div class="hero__actions reveal">
+          <a href="#contact" class="btn btn--primary">Démarrer un projet</a>
+          <a href="#realisations" class="btn btn--secondary">Voir nos réalisations</a>
+        </div>
+      </div>
+      <a href="#services" class="scroll-indicator" aria-label="Défiler vers le bas">
+        <span></span>
+      </a>
+    </section>
+
+    <section class="services section" id="services">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__label">Nos services</span>
+          <h2 class="section__title">Une expérience digitale sur mesure</h2>
+          <p class="section__desc">Nous combinons esthétique, ergonomie et technologie pour créer des sites qui marquent les esprits.</p>
+        </div>
+
+        <div class="services__grid">
+          <article class="service-card reveal">
+            <div class="service-card__icon" aria-hidden="true">🎨</div>
+            <h3 class="service-card__title">Design UI/UX</h3>
+            <p>Interfaces modernes, parcours fluides et identité visuelle cohérente pour séduire dès le premier clic.</p>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-card__icon" aria-hidden="true">⚡</div>
+            <h3 class="service-card__title">Performance</h3>
+            <p>Code optimisé, temps de chargement réduits et expérience fluide sur tous les appareils.</p>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-card__icon" aria-hidden="true">🚀</div>
+            <h3 class="service-card__title">Développement</h3>
+            <p>Solutions robustes et évolutives avec les meilleures pratiques du web moderne.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase section" id="realisations">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__label">Réalisations</span>
+          <h2 class="section__title">Quelques créations récentes</h2>
+        </div>
+
+        <div class="showcase__grid">
+          <figure class="showcase__item reveal">
+            <div class="showcase__thumb" style="--bg: linear-gradient(135deg, #6366f1, #a855f7);">
+              <span>Aurora</span>
+            </div>
+            <figcaption class="showcase__caption">
+              <h3>Aurora</h3>
+              <p>Site e-commerce luxueux</p>
+            </figcaption>
+          </figure>
+
+          <figure class="showcase__item reveal">
+            <div class="showcase__thumb" style="--bg: linear-gradient(135deg, #f59e0b, #ef4444);">
+              <span>Horizon</span>
+            </div>
+            <figcaption class="showcase__caption">
+              <h3>Horizon</h3>
+              <p>Plateforme SaaS intuitive</p>
+            </figcaption>
+          </figure>
+
+          <figure class="showcase__item reveal">
+            <div class="showcase__thumb" style="--bg: linear-gradient(135deg, #10b981, #06b6d4);">
+              <span>Verdant</span>
+            </div>
+            <figcaption class="showcase__caption">
+              <h3>Verdant</h3>
+              <p>Portfolio créatif immersif</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials section" id="temoignages">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__label">Témoignages</span>
+          <h2 class="section__title">Ils nous font confiance</h2>
+        </div>
+
+        <div class="testimonials__grid">
+          <blockquote class="testimonial reveal">
+            <p class="testimonial__text">« Un résultat époustouflant. Notre site reflète enfin l'image premium de notre marque. »</p>
+            <footer class="testimonial__author">
+              <strong>Clara Moreau</strong>
+              <span>Fondatrice, Aurora</span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial reveal">
+            <p class="testimonial__text">« Rapide, attentif aux détails et créatif. La collaboration a été un véritable plaisir. »</p>
+            <footer class="testimonial__author">
+              <strong>Thomas Leroy</strong>
+              <span>CEO, Horizon</span>
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta section" id="contact">
+      <div class="container">
+        <div class="cta__box reveal">
+          <h2 class="cta__title">Prêt à briller en ligne ?</h2>
+          <p class="cta__desc">Discutons de votre projet et créons ensemble quelque chose de magnifique.</p>
+          <form class="contact-form" action="#" method="post" novalidate>
+            <label for="email" class="sr-only">Votre adresse e-mail</label>
+            <input id="email" name="email" type="email" placeholder="votre@email.com" required />
+            <button type="submit" class="btn btn--primary">Envoyer</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__brand">✦ Lumière</p>
+      <p class="footer__copy">© <span id="year"></span> Lumière. Tous droits réservés.</p>
+      <ul class="footer__social">
+        <li><a href="#" aria-label="Twitter">𝕏</a></li>
+        <li><a href="#" aria-label="Instagram">📷</a></li>
+        <li><a href="#" aria-label="LinkedIn">💼</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
