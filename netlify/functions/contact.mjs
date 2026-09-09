@@ -120,8 +120,10 @@ export default async (request, context) => {
     // Send an email notification via Resend
     const resendApiKey = process.env.RESEND_API_KEY;
     const contactEmail = process.env.CONTACT_EMAIL;
+    let emailDebug = { attempted: false, status: null, body: null };
 
     if (resendApiKey && contactEmail) {
+      emailDebug.attempted = true;
       const emailResponse = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
@@ -141,16 +143,19 @@ export default async (request, context) => {
         }),
       });
 
-      const resendBody = await emailResponse.text();
+      emailDebug.status = emailResponse.status;
+      emailDebug.body = await emailResponse.text();
       if (!emailResponse.ok) {
-        console.error(`Resend error ${emailResponse.status}: ${resendBody}`);
+        console.error(`Resend error ${emailResponse.status}: ${emailDebug.body}`);
       } else {
-        console.log(`E-mail envoyé via Resend: ${resendBody}`);
+        console.log(`E-mail envoyé via Resend: ${emailDebug.body}`);
       }
+    } else {
+      emailDebug.reason = 'Missing RESEND_API_KEY or CONTACT_EMAIL';
     }
 
     return new Response(
-      JSON.stringify({ success: true, message: 'Message reçu avec succès !' }),
+      JSON.stringify({ success: true, message: 'Message reçu avec succès !', emailDebug }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
   } catch (error) {
