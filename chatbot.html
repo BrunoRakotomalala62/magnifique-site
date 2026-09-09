@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Assistant virtuel Lumière — discutez avec notre chatbot premium." />
+  <title>Lumière Chatbot — Assistant premium</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="chatbot.css" />
+</head>
+<body>
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="index.html" class="logo" aria-label="Accueil Lumière">
+        <span class="logo__icon" aria-hidden="true">✦</span>
+        <span class="logo__text">Lumière</span>
+      </a>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="index.html#accueil" class="nav__link">Accueil</a></li>
+        <li><a href="index.html#services" class="nav__link">Services</a></li>
+        <li><a href="index.html#realisations" class="nav__link">Réalisations</a></li>
+        <li><a href="index.html#temoignages" class="nav__link">Témoignages</a></li>
+        <li><a href="chatbot.html" class="nav__link nav__link--active">Chatbot</a></li>
+        <li><a href="index.html#contact" class="nav__link nav__link--cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="chat-page">
+    <div class="chat-page__intro reveal">
+      <span class="section__label">Assistant virtuel</span>
+      <h1 class="chat-page__title">Discutez avec <span class="text-gradient">Lumière</span></h1>
+      <p class="chat-page__desc">Posez vos questions, envoyez des images et obtenez une réponse instantanée.</p>
+    </div>
+
+    <section class="chat-container reveal" aria-label="Conversation avec l'assistant Lumière">
+      <div class="chat-header">
+        <div class="chat-header__avatar" aria-hidden="true">
+          <span>✦</span>
+          <span class="chat-header__status" aria-label="En ligne"></span>
+        </div>
+        <div class="chat-header__info">
+          <h2 class="chat-header__name">Assistant Lumière</h2>
+          <p class="chat-header__subtitle">En ligne · Répond instantanément</p>
+        </div>
+      </div>
+
+      <div class="chat-messages" id="chatMessages" aria-live="polite" aria-atomic="false">
+        <div class="message message--bot">
+          <div class="message__bubble">
+            <p>Bonjour ! 👋 Je suis l’assistant Lumière. Comment puis-je vous aider aujourd’hui ?</p>
+          </div>
+          <span class="message__time" data-timestamp></span>
+        </div>
+      </div>
+
+      <div class="chat-input-area">
+        <input type="file" id="fileInput" class="chat-file-input" accept="image/*" aria-label="Joindre une image" />
+
+        <button type="button" class="chat-attach" id="attachBtn" aria-label="Joindre une image" title="Joindre une image">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+          </svg>
+        </button>
+
+        <div class="chat-preview" id="imagePreview" hidden>
+          <img src="" alt="Aperçu de la pièce jointe" />
+          <button type="button" class="chat-preview__remove" id="removePreview" aria-label="Supprimer l'image">×</button>
+        </div>
+
+        <input type="text" id="chatInput" class="chat-input" placeholder="Écrivez votre message…" autocomplete="off" aria-label="Votre message" />
+
+        <button type="button" class="chat-send" id="sendBtn" aria-label="Envoyer le message">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__brand">✦ Lumière</p>
+      <p class="footer__copy">© <span id="year"></span> Lumière. Tous droits réservés.</p>
+      <ul class="footer__social">
+        <li><a href="#" aria-label="Twitter">𝕏</a></li>
+        <li><a href="#" aria-label="Instagram">📷</a></li>
+        <li><a href="#" aria-label="LinkedIn">💼</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>
