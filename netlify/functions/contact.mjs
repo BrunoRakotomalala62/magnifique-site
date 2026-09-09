@@ -1,3 +1,12 @@
+function escapeHtml(text) {
+  return String(text)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 export default async (request, context) => {
   // GET = documentation de l’API
   if (request.method === 'GET') {
@@ -106,6 +115,36 @@ export default async (request, context) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, message, date: new Date().toISOString() }),
       }).catch((err) => console.error('Webhook error:', err));
+    }
+
+    // Send an email notification via Resend
+    const resendApiKey = process.env.RESEND_API_KEY;
+    const contactEmail = process.env.CONTACT_EMAIL;
+
+    if (resendApiKey && contactEmail) {
+      const emailResponse = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${resendApiKey}`,
+        },
+        body: JSON.stringify({
+          from: 'Lumière <onboarding@resend.dev>',
+          to: [contactEmail],
+          subject: `Nouveau message de contact de ${name}`,
+          html: `<p><strong>Nom :</strong> ${escapeHtml(name)}</p>
+                 <p><strong>E-mail :</strong> ${escapeHtml(email)}</p>
+                 <p><strong>Message :</strong></p>
+                 <p>${escapeHtml(message).replace(/\n/g, '<br/>')}</p>
+                 <p><em>Envoyé depuis le site Lumière</em></p>`,
+          reply_to: email,
+        }),
+      });
+
+      if (!emailResponse.ok) {
+        const errorBody = await emailResponse.text();
+        console.error('Resend error:', emailResponse.status, errorBody);
+      }
     }
 
     return new Response(
