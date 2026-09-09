@@ -105,7 +105,7 @@ export default async (request, context) => {
     }
 
     // Log the submission in Netlify function logs
-    console.log('Nouveau message de contact:', { name, email, message });
+    console.log(`Nouveau message de contact: ${JSON.stringify({ name, email, message })}`);
 
     // Optional: forward to a webhook if configured (e.g. Slack/Discord/Make)
     const webhookUrl = process.env.CONTACT_WEBHOOK_URL;
@@ -141,9 +141,11 @@ export default async (request, context) => {
         }),
       });
 
+      const resendBody = await emailResponse.text();
       if (!emailResponse.ok) {
-        const errorBody = await emailResponse.text();
-        console.error('Resend error:', emailResponse.status, errorBody);
+        console.error(`Resend error ${emailResponse.status}: ${resendBody}`);
+      } else {
+        console.log(`E-mail envoyé via Resend: ${resendBody}`);
       }
     }
 
